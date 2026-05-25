@@ -4,10 +4,10 @@ import numpy as np
 
 # Load the trained model
 try:
-    with open("diabetes_prediction.pkl", "rb") as file:
+    with open("Student_status_prediction.pkl", "rb") as file:
         model = pickle.load(file)
 except FileNotFoundError:
-    st.error("Model file 'diabetes_prediction.pkl' not found. Please upload it to your repository.")
+    st.error("Model file 'Student_status_prediction.pkl' not found. Please upload it to your repository.")
 
 st.title("Student Semester Status Prediction")
 st.write("Enter the student details below to predict their semester status.")
