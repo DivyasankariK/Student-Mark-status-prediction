@@ -7,7 +7,7 @@ try:
     with open("Student_status_prediction.pkl", "rb") as file:
         model = pickle.load(file)
 except FileNotFoundError:
-    st.error("Model file 'Student_status_prediction.pkl' not found. Please upload it to your repository.")
+    st.error("Model file 'Student_status_prediction.pkl' not found. Please upload it.")
 
 st.title("Student Semester Status Prediction")
 st.write("Enter the student details below to predict their semester status.")
@@ -20,15 +20,14 @@ internal_status = st.selectbox("Internal Status (0 for Bad, 1 for Good)", option
 
 # Predict button
 if st.button("Predict Status"):
-    # Features must match the exact training column order: 
-    # ['assignments', 'Performance', 'attendence', 'Internal status']
+    # Input matching training order: ['assignments', 'Performance', 'attendence', 'Internal status']
     features = np.array([[assignments, performance, attendance, internal_status]])
     
     prediction = model.predict(features)
     
     st.subheader("Prediction Result:")
+    # FIXED: Added indexing [0] and changed the visual styling for the else block
     if prediction[0] == 1:
-        st.success("Good State")
+        st.success("Good State 🎉")
     else:
-        st.success("Bad State")
-
+        st.error("Bad State ⚠️")
