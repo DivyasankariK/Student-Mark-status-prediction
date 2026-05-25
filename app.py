@@ -30,5 +30,5 @@ if st.button("Predict Status"):
     if prediction[0] == 1:
         st.success("Good State")
     else:
-        st.error("Bad State")
+        st.success("Bad State")
 
